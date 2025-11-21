@@ -19,6 +19,9 @@ COPY package*.json ./
 # Instala todas as dependências (incluindo devDependencies)
 RUN npm ci
 
+# Instala o Angular CLI globalmente
+RUN npm install -g @angular/cli@17.3.17
+
 # Copia o restante do código-fonte (pode ser sobrescrito por volumes)
 COPY . .
 
