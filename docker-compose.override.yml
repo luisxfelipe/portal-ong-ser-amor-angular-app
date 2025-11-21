@@ -2,8 +2,7 @@ services:
   frontend:
     build:
       target: base
-    command: npm start -- --host 0.0.0.0
-    #command: sleep infinity
+    command: sleep infinity
     ports:
       - "${FRONTEND_PORT:-4200}:4200"
     volumes:
