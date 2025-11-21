@@ -1,0 +1,7 @@
+services:
+  frontend:
+    build:
+      target: production # Usa o estágio com nginx
+    restart: unless-stopped # Política de reinício para produção
+    ports:
+      - "${FRONTEND_PORT:-80}:80"

@@ -1,0 +1,9 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: frontend-angular-portal-ong-ser-amor
+    # Variáveis de ambiente para build do Angular
+    environment:
+      - API_URL=${API_URL:-http://localhost:3000}
