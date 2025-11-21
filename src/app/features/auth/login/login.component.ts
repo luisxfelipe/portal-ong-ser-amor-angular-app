@@ -48,7 +48,7 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched;
+      this.loginForm.markAllAsTouched();
       return;
     }
 
