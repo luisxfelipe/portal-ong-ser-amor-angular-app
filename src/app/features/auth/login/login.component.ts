@@ -31,6 +31,8 @@ export class LoginComponent {
   // controla a visibilidade da senha no HTML
   hidePassword = true;
 
+  isLoading = false;
+
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -50,8 +52,14 @@ export class LoginComponent {
       return;
     }
 
+    this.isLoading = true;
+
     const { email, password } = this.loginForm.value;
     console.log(`Logando com: ${email} e senha secreta.`);
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3500);
 
     alert('Form válido!');
   }
