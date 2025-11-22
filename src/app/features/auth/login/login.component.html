@@ -47,6 +47,9 @@
           <button mat-flat-button color="primary" [disabled]="isLoading">
             {{ isLoading ? "Carregando..." : "Entrar" }}
           </button>
+          @if (loginError()) {
+          <mat-error>E-mail ou senha incorretos.</mat-error>
+          }
         </mat-card-actions>
       </form>
     </mat-card-content>

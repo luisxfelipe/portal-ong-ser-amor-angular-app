@@ -26,7 +26,7 @@ export class AuthService {
       .post<LoginResponse>(`${this.API_URL}/auth/signin`, credentials)
       .pipe(
         tap((response) => {
-          this.cookieService.set('token', response.accessToken, 1, '/');
+          this.cookieService.set('token', response.access_token, 1, '/');
           this.cookieService.set('user', JSON.stringify(response.user), 1, '/');
 
           this.currentUser.set(response.user);
