@@ -76,7 +76,7 @@ export class LoginComponent {
     this.authService.login(credentials).subscribe({
       next: () => {
         this.isLoading = false;
-        this.router.navigate(['/cursos']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.isLoading = false;
