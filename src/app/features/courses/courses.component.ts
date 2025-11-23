@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CourseService } from '../../core/services/course.service';
 import { Course } from '../../core/models/course.model';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginatorIntl } from '../../core/i18n/custom-paginator-intl';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { CourseFormComponent } from './components/course-form/course-form.component';
 
 @Component({
   selector: 'app-courses',
@@ -22,13 +25,17 @@ import { CustomPaginatorIntl } from '../../core/i18n/custom-paginator-intl';
     MatIconModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginatorIntl }],
 })
-export class CoursesComponent {
+export class CoursesComponent implements OnInit {
   private courseService = inject(CourseService);
+  private dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
 
   courses = signal<Course[]>([]);
   isLoading = signal(false);
@@ -67,8 +74,6 @@ export class CoursesComponent {
   }
 
   onPageChange(event: PageEvent) {
-    // CONVERSÃO DE ENTRADA (Material -> Nosso Estado)
-    // O Material devolve pageIndex 0. Nós somamos 1 para virar currentPage 1.
     this.currentPage.set(event.pageIndex + 1);
     this.itemsPerPage.set(event.pageSize);
 
@@ -77,16 +82,46 @@ export class CoursesComponent {
 
   // Métodos para ações futuras (CRUD)
   onAdd() {
-    console.log('Navegar para tela de criar curso');
+    const dialogRef = this.dialog.open(CourseFormComponent, {
+      width: '400px',
+      data: null,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        this.loadCourses();
+      }
+    });
   }
 
   onEdit(course: Course) {
-    console.log('Editar curso:', course.name);
+    const dialogRef = this.dialog.open(CourseFormComponent, {
+      width: '400px',
+      data: course,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        this.loadCourses();
+      }
+    });
   }
 
   onDelete(course: Course) {
-    if (confirm(`Tem certeza que deseja excluir o curso ${course.name}?`)) {
-      console.log('Excluir curso:', course.id);
+    if (confirm(`Tem certeza que deseja excluir o curso "${course.name}"?`)) {
+      this.isLoading.set(true);
+
+      this.courseService.delete(course.id).subscribe({
+        next: () => {
+          this.snackBar.open('Curso excluído!', 'Fechar', { duration: 3000 });
+          this.loadCourses();
+        },
+        error: (err) => {
+          console.error(err);
+          this.snackBar.open('Erro ao excluir curso.', 'Fechar');
+          this.isLoading.set(false);
+        },
+      });
     }
   }
 }

@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>
+  {{ isEditMode ? "Editar Curso" : "Novo Curso" }}
+</h2>
+
+<mat-dialog-content>
+  <fieldset [disabled]="isSaving()" style="border: 0; padding: 0; margin: 0">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome do Curso</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="Ex: Programação Web"
+          cdkFocusInitial
+        />
+        @if (form.get('name')?.hasError('required')) {
+        <mat-error>O nome é obrigatório</mat-error>
+        }
+      </mat-form-field>
+    </form>
+  </fieldset>
+  @if (isSaving()) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" [disabled]="isSaving()">
+    Cancelar
+  </button>
+
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="onSubmit()"
+    [disabled]="form.invalid || form.pristine || isSaving()"
+  >
+    {{ isSaving() ? "Salvando..." : "Salvar" }}
+  </button>
+</mat-dialog-actions>
