@@ -5,12 +5,14 @@ import { environment } from '../../../environments/environment';
 import { User } from '../models/user.model';
 import { tap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private http = inject(HttpClient);
+  private router = inject(Router);
   private cookieService = inject(CookieService);
 
   private readonly API_URL = environment.apiUrl;
@@ -37,8 +39,8 @@ export class AuthService {
   logout() {
     this.cookieService.delete('token', '/');
     this.cookieService.delete('user', '/');
-
     this.currentUser.set(null);
+    this.router.navigate(['/login']);
   }
 
   private authUserFromCookies() {
