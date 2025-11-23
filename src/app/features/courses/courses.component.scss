@@ -1,0 +1,66 @@
+.courses-container {
+  padding: 0;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+  }
+}
+
+.table-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+}
+
+mat-paginator {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  background: #fff;
+  font-size: 14px;
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+
+.mat-column-actions {
+  width: 120px;
+  text-align: center;
+}
+
+.badge-turmas {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.loading-shade {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.no-data {
+  text-align: center;
+  padding: 24px;
+  color: #757575;
+  font-style: italic;
+}
