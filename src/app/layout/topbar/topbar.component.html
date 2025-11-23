@@ -1,1 +1,12 @@
-<p>topbar works!</p>
+<mat-toolbar class="topbar">
+  <span class="spacer"></span>
+  <div class="user-profile">
+    <div class="user-info">
+      <h4 class="user-name">
+        {{ authService.currentUser()?.name }}
+      </h4>
+      <p>Voluntário</p>
+    </div>
+    <button mat-menu-item (click)="logout()">Sair</button>
+  </div>
+</mat-toolbar>
