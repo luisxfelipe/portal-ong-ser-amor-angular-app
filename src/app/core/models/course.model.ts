@@ -3,3 +3,11 @@ export interface Course {
   name: string;
   activeClassesCount?: number;
 }
+
+export interface CreateCourseRequest {
+  name: string;
+}
+
+export interface UpdateCourseRequest {
+  name: string;
+}
