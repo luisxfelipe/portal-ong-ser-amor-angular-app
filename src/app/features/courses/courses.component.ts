@@ -13,6 +13,7 @@ import { CustomPaginatorIntl } from '../../core/i18n/custom-paginator-intl';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CourseFormComponent } from './components/course-form/course-form.component';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-courses',
@@ -27,6 +28,7 @@ import { CourseFormComponent } from './components/course-form/course-form.compon
     MatPaginatorModule,
     MatDialogModule,
     MatSnackBarModule,
+    ButtonComponent,
   ],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',

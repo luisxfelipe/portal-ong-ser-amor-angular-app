@@ -1,10 +1,7 @@
 <div class="courses-container">
   <header class="page-header">
     <h1>Cursos</h1>
-    <button mat-flat-button color="primary" (click)="onAdd()">
-      <mat-icon>add</mat-icon>
-      Novo Curso
-    </button>
+    <app-button label="Novo Curso" icon="add" (click)="onAdd()" />
   </header>
 
   @if (isLoading()) {
