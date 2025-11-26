@@ -1,12 +1,38 @@
+@if (variant() === 'flat') {
 <button
   mat-flat-button
-  [color]="color()"
+  [color]="materialColor()"
   [type]="type()"
   [disabled]="disabled() || loading()"
 >
-  @if (loading()) { <span>Carregando...</span> } @else { @if (icon()) {
+  <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</button>
+} @if (variant() === 'stroked') {
+<button
+  mat-stroked-button
+  [color]="materialColor()"
+  [type]="type()"
+  [disabled]="disabled() || loading()"
+>
+  <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</button>
+} @if (variant() === 'basic') {
+<button
+  mat-button
+  [color]="materialColor()"
+  [type]="type()"
+  [disabled]="disabled() || loading()"
+>
+  <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</button>
+}
+
+<ng-template #contentTpl>
+  @if (loading()) {
+  <span>Carregando...</span>
+  } @else { @if (icon()) {
   <mat-icon>{{ icon() }}</mat-icon>
   }
   <span>{{ label() }}</span>
   }
-</button>
+</ng-template>
