@@ -25,12 +25,9 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button (click)="onCancel()" [disabled]="isSaving()">
-    Cancelar
-  </button>
   <app-button
     label="Cancelar"
-    color="accent"
+    color="basic"
     (click)="onCancel()"
     [disabled]="isSaving()"
   />
