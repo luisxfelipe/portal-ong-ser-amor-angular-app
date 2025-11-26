@@ -28,13 +28,11 @@
   <button mat-button (click)="onCancel()" [disabled]="isSaving()">
     Cancelar
   </button>
-
-  <button
-    mat-flat-button
-    color="primary"
-    (click)="onSubmit()"
-    [disabled]="form.invalid || form.pristine || isSaving()"
-  >
-    {{ isSaving() ? "Salvando..." : "Salvar" }}
-  </button>
+  <app-button
+    label="Cancelar"
+    color="accent"
+    (click)="onCancel()"
+    [disabled]="isSaving()"
+  />
+  <app-button label="Salvar" [disabled]="isSaving()" (click)="onSubmit()" />
 </mat-dialog-actions>
