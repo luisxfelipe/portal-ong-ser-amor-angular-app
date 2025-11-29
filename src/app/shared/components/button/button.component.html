@@ -34,6 +34,15 @@
 >
   <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
 </button>
+} @if (variant() === 'icon') {
+<button
+  mat-icon-button
+  [color]="materialColor()"
+  [type]="type()"
+  [disabled]="disabled() || loading()"
+>
+  <mat-icon>{{ icon() }}</mat-icon>
+</button>
 }
 
 <ng-template #contentTpl>
