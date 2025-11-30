@@ -7,6 +7,12 @@
       </h4>
       <p>Voluntário</p>
     </div>
-    <button mat-menu-item (click)="logout()">Sair</button>
+    <app-button
+      label="Sair"
+      variant="stroked"
+      size="sm"
+      color="basic"
+      (click)="logout()"
+    />
   </div>
 </mat-toolbar>

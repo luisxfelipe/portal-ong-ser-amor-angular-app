@@ -1,3 +1,4 @@
+import { ButtonComponent } from './../../../../shared/components/button/button.component';
 import { Component, inject, signal } from '@angular/core';
 import {
   FormBuilder,
@@ -29,6 +30,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatDialogModule,
     MatSnackBarModule,
     MatProgressBarModule,
+    ButtonComponent,
   ],
   templateUrl: './course-form.component.html',
   styleUrl: './course-form.component.scss',

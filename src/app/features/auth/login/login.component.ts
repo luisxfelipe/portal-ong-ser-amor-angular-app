@@ -14,6 +14,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { LoginRequest } from '../../../core/models/auth.models';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ButtonComponent } from '../../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ import { Router } from '@angular/router';
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
+    ButtonComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
