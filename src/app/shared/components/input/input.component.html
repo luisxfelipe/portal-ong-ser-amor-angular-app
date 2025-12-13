@@ -1,0 +1,30 @@
+<mat-form-field appearance="outline" [class.disabled]="isDisabled">
+  <mat-label>{{ label() }}</mat-label>
+
+  <input
+    matInput
+    [type]="
+      type() === 'password' ? (hidePassword() ? 'password' : 'text') : type()
+    "
+    [placeholder]="placeholder()"
+    [value]="value"
+    [disabled]="isDisabled"
+    (input)="onInput($event)"
+    (blur)="onTouched()"
+  />
+
+  @if (type() === 'password') {
+  <button
+    mat-icon-button
+    matSuffix
+    (click)="togglePassword($event)"
+    [attr.aria-label]="'Ocultar senha'"
+    [attr.aria-pressed]="hidePassword()"
+    type="button"
+  >
+    <mat-icon>{{ hidePassword() ? "visibility_off" : "visibility" }}</mat-icon>
+  </button>
+  } @if (ngControl?.invalid && ngControl?.touched) {
+  <mat-error>{{ getErrorMessage() }}</mat-error>
+  }
+</mat-form-field>
